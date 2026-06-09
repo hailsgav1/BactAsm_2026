@@ -3,4 +3,4 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - snippy = 4.6.0
+  - snippy=4.6.0
