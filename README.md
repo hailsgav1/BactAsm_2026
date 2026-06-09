@@ -65,7 +65,6 @@ sbatch run_bactasm.sh
 - **Python version:** Always use `python=3.11` when creating the conda environment. Python 3.12+ breaks QUAST and SPAdes due to removal of `distutils`.
 - **QUAST crashes with `No module named distutils`:** This is a known issue with QUAST on Python 3.12+. Use Python 3.11 in your conda environment to avoid this.
 - **QUAST crashes with `No module named joblib3`:** This is also a known QUAST bug. The pipeline fixes this automatically by using `export PATH=$CONDA_PREFIX/bin:$PATH` in the shell rules.
-- **Roary installation fails:** Run `conda config --set channel_priority flexible` before installing.
 - **Git fails on HPC:** If you get a `curl_global_sslset` error, run `export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH` first.
 - **Missing modules:** If you get `ModuleNotFoundError` for `yaml` or `Bio`, run `pip install pyyaml biopython`.
 - **SRA accession format:** BactAsm requires **run accessions** (starting with `SRR`, `ERR`, or `DRR`). Sample accessions (ERS, SRS) will not work with `fasterq-dump`.
