@@ -12,6 +12,7 @@ rule trim:
         pe="-c"
     shell:
         """
+        mkdir -p {output_dir_trim}pair
         fastp {params.pe} --thread {threads} --in1 {input.left} --in2 {input.right} \
         --out1 {output.left_paired} --out2 {output.right_paired}
         """
