@@ -1,0 +1,5 @@
+.snakemake/
+logs/
+fastp.html
+fastp.json
+config/config.yaml
