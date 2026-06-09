@@ -12,6 +12,7 @@ rule spades:
     threads: THREADS
     shell:
         """
+        export PATH=$CONDA_PREFIX/bin:$PATH
         spades.py --pe1-1 {input.left} \
         --pe1-2 {input.right} \
         -t {threads} \
@@ -32,7 +33,8 @@ rule quast_denovo:
         output_dir=output_dir_asm
     shell:
         """
-        quast{params.reference} {input.final} -o {params.output_dir}/quast/{wildcards.sample} -t {threads}
+        export PATH=$CONDA_PREFIX/bin:$PATH
+        python $(which quast){params.reference} {input.final} -o {params.output_dir}/quast/{wildcards.sample} -t {threads}
         """
 
 rule multiqc_quast:
@@ -48,4 +50,3 @@ rule multiqc_quast:
         """
         multiqc {input.report} -d -dd 1 -o {params.output_dir} -n multiqc_quast
         """
-
