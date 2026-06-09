@@ -2,5 +2,5 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - snakemake = 7.18.1
-  - mamba = 1.0.0
+  - snakemake=8.0.0
+  - mamba=1.5.0
