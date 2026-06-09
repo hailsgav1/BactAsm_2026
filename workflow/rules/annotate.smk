@@ -13,9 +13,9 @@ rule prokka:
         """
         sed -re 's/(_length)[^=]*$/\1/' {input.final} > {params.output_dir}{wildcards.sample}.fasta
 
-        prokka -kingdom {params.kingdom} -genus {params.genus} \
-        -outdir {params.output_dir}{wildcards.sample} \
-        -prefix {wildcards.sample} \
+        prokka --kingdom {params.kingdom} --genus {params.genus} \
+        --outdir {params.output_dir}{wildcards.sample} \
+        --prefix {wildcards.sample} \
         {params.output_dir}{wildcards.sample}.fasta --force
 
         rm {params.output_dir}{wildcards.sample}.fasta
