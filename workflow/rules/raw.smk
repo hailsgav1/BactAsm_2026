@@ -6,13 +6,13 @@ rule fastq_dump:
     conda:
         "../env/sra-tools.yaml"
     params:
-        sra=lambda wildcards: config["samples"][wildcards.sample], # input "wildcards" object as input to an function to return the value assign to the "sra" variable 
-        formats="--gzip",
-        pe="--split-3", # this will make readids for all pe reads index with 1 & 2
+        sra=lambda wildcards: config["samples"][wildcards.sample],
         output_dir=output_dir
     shell:
         """
-        fastq-dump {params.formats} {params.pe} -O {params.output_dir}/SRA {params.sra}
+        fasterq-dump --split-3 -e {threads} -O {params.output_dir}/SRA {params.sra}
+        gzip {params.output_dir}/SRA/{params.sra}_1.fastq
+        gzip {params.output_dir}/SRA/{params.sra}_2.fastq
         mv {params.output_dir}/SRA/{params.sra}_1.fastq.gz {params.output_dir}/SRA/{wildcards.sample}_1.fastq.gz
         mv {params.output_dir}/SRA/{params.sra}_2.fastq.gz {params.output_dir}/SRA/{wildcards.sample}_2.fastq.gz
         """
@@ -45,7 +45,3 @@ rule multiqc:
         output_dir=output_dir
     shell:
         "multiqc {input.zip} -o {params.output_dir}"
-
-
-
-
