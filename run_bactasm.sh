@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=64gb
 #SBATCH --time=24:00:00
-#SBATCH --account=kcooper
+#SBATCH --account=user
 #SBATCH --partition=standard
 
 # ====== USER SETTINGS - edit these ======
