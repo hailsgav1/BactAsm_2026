@@ -10,19 +10,18 @@
 #SBATCH --partition=standard
 
 # ====== USER SETTINGS - edit these ======
-BACTASM_DIR=/xdisk/kcooper/gaviganh/BactAsm_2026          # path to cloned BactAsm directory
-OUTPUT=/xdisk/kcooper/gaviganh/BactAsm_test/output            # path to output directory
-SAMPLE_LIST=/xdisk/kcooper/gaviganh/BactAsm_test/sample_list.txt  # path to sample list (sampleID TAB sraID)
-REF=/xdisk/kcooper/gaviganh/test_data/GCF_000026665.1_ASM2666v1_genomic.fna       # path to reference genome (optional)
+BACTASM_DIR=/path/to/BactAsm          # path to cloned BactAsm directory
+OUTPUT=/path/to/your/output            # path to output directory
+SAMPLE_LIST=/path/to/sample_list.txt  # path to sample list (sampleID TAB sraID)
+REF=/path/to/your/reference.fna       # path to reference genome (optional)
 THREADS=16                             # number of threads (match --cpus-per-task)
 KINGDOM=Bacteria                       # kingdom (default: Bacteria)
-GENUS=Streptococcus                       # genus of organism
+GENUS=Leptospira                       # genus of organism
 # =========================================
 
 source ~/.bashrc
-conda activate BactPrep
+conda activate BactAsm
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
-
 mkdir -p $BACTASM_DIR/logs
 cd $BACTASM_DIR
 
