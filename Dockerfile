@@ -1,5 +1,4 @@
-
-FROM continuumio/miniconda3:latest
+FROM condaforge/mambaforge:latest
 
 LABEL maintainer="biowizardhailey"
 LABEL description="BactAsm - Bacterial Genome Assembly Pipeline"
@@ -14,19 +13,19 @@ COPY . .
 RUN conda config --set channel_priority flexible
 
 # Install Python and base tools
-RUN conda install -c conda-forge -c bioconda \
+RUN mamba install -c conda-forge -c bioconda \
     python=3.11 snakemake packaging joblib -y
 
 # Install QC tools
-RUN conda install -c conda-forge -c bioconda \
+RUN mamba install -c conda-forge -c bioconda \
     fastp fastqc multiqc -y
 
 # Install assembly tools
-RUN conda install -c conda-forge -c bioconda \
+RUN mamba install -c conda-forge -c bioconda \
     spades=4.0.0 quast=5.3.0 -y
 
 # Install annotation and SNP tools
-RUN conda install -c conda-forge -c bioconda \
+RUN mamba install -c conda-forge -c bioconda \
     prokka=1.14.6 snippy=4.6.0 samtools sra-tools qualimap -y
 
 RUN pip install pyyaml biopython
