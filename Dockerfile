@@ -30,7 +30,7 @@ RUN mamba install -c conda-forge -c bioconda \
 
 # Install SNP tools
 RUN mamba install -c conda-forge -c bioconda \
-    snippy=4.6.0 -y
+    snippy -y
 
 # Install other tools
 RUN mamba install -c conda-forge -c bioconda \
