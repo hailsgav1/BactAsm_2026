@@ -24,9 +24,21 @@ RUN mamba install -c conda-forge -c bioconda \
 RUN mamba install -c conda-forge -c bioconda \
     spades=4.0.0 quast=5.3.0 -y
 
-# Install annotation and SNP tools
+# Install annotation tools
 RUN mamba install -c conda-forge -c bioconda \
-    prokka=1.14.6 snippy=4.6.0 samtools sra-tools qualimap -y
+    prokka=1.14.6 -y
+
+# Install SNP tools
+RUN mamba install -c conda-forge -c bioconda \
+    snippy=4.6.0 -y
+
+# Install other tools
+RUN mamba install -c conda-forge -c bioconda \
+    samtools sra-tools -y
+
+# Install qualimap
+RUN mamba install -c conda-forge -c bioconda \
+    qualimap -y
 
 RUN pip install pyyaml biopython
 
