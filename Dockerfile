@@ -25,9 +25,19 @@ RUN conda install -c conda-forge -c bioconda \
     snippy=4.6.0 \
     samtools \
     sra-tools \
-    qualimap -y
+    qualimap \
+    packaging \
+    joblib -y
 
 RUN pip install pyyaml biopython
+
+# Fix QUAST distutils issue (removed in Python 3.12)
+RUN find /opt/conda -name "qconfig.py" -path "*/quast*" -exec \
+    sed -i 's|from distutils.version import LooseVersion|from packaging.version import Version as LooseVersion|g' {} \;
+
+# Fix QUAST joblib3 issue (joblib3 doesn't exist, use joblib)
+RUN find /opt/conda -name "qutils.py" -path "*/quast*" -exec \
+    sed -i 's|from joblib3 import Parallel, delayed|from joblib import Parallel, delayed|g' {} \;
 
 # Make BactAsm.py executable
 RUN chmod +x BactAsm.py
