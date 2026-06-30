@@ -64,20 +64,26 @@ sbatch run_bactasm.sh
 
 The easiest way to run BactPrep without installing any dependencies is to use the pre-built container. It works on any system with Docker or Apptainer/Singularity installed.
 
+## Running with Docker/Apptainer (Recommended)
+
+The easiest way to run BactAsm without installing any dependencies is to use the pre-built container. It works on any system with Docker or Apptainer/Singularity installed.
+
 ### Using Apptainer/Singularity (HPC):
 ```bash
 # Set cache directory to avoid home directory space issues
 export APPTAINER_CACHEDIR=/path/to/your/xdisk/.apptainer/cache
 
 # Pull the container (one time only)
-apptainer pull docker://biowizardhailey/bactprep:latest
+apptainer pull docker://biowizardhailey/bactasm:latest
 
 # Run the pipeline
-apptainer exec bactprep_latest.sif python /BactPrep/start_analysis.py ALL \
-  -p my_project \
+apptainer exec bactasm_latest.sif python /BactAsm/BactAsm.py \
+  -l /path/to/sample_list.txt \
+  -f /path/to/reference.fna \
   -o /path/to/output \
-  -i /path/to/assemblies \
-  -r /path/to/reference.fna
+  -t 16 \
+  -k Bacteria \
+  -g Leptospira
 ```
 
 > **Note:** No conda setup required — all dependencies are pre-installed in the container!
