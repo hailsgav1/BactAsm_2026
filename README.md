@@ -62,10 +62,6 @@ sbatch run_bactasm.sh
 
 ## Running with Docker/Apptainer (Recommended)
 
-The easiest way to run BactPrep without installing any dependencies is to use the pre-built container. It works on any system with Docker or Apptainer/Singularity installed.
-
-## Running with Docker/Apptainer (Recommended)
-
 The easiest way to run BactAsm without installing any dependencies is to use the pre-built container. It works on any system with Docker or Apptainer/Singularity installed.
 
 ### Using Apptainer/Singularity (HPC):
