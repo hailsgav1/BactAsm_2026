@@ -60,6 +60,28 @@ sbatch run_bactasm.sh
 
 > **Note:** Make sure to set `#SBATCH --account` to your HPC account name before submitting.
 
+## Running with Docker/Apptainer (Recommended)
+
+The easiest way to run BactPrep without installing any dependencies is to use the pre-built container. It works on any system with Docker or Apptainer/Singularity installed.
+
+### Using Apptainer/Singularity (HPC):
+```bash
+# Set cache directory to avoid home directory space issues
+export APPTAINER_CACHEDIR=/path/to/your/xdisk/.apptainer/cache
+
+# Pull the container (one time only)
+apptainer pull docker://biowizardhailey/bactprep:latest
+
+# Run the pipeline
+apptainer exec bactprep_latest.sif python /BactPrep/start_analysis.py ALL \
+  -p my_project \
+  -o /path/to/output \
+  -i /path/to/assemblies \
+  -r /path/to/reference.fna
+```
+
+> **Note:** No conda setup required — all dependencies are pre-installed in the container!
+
 ## Troubleshooting
 
 - **Python version:** Always use `python=3.11` when creating the conda environment. Python 3.12+ breaks QUAST and SPAdes due to removal of `distutils`.
